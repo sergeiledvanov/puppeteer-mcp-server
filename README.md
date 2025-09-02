@@ -109,6 +109,28 @@ Add the following to your Claude Desktop configuration file (located at `~/.clau
 
 For source installation, replace `path/to/puppeteer-mcp-server` with the actual path to where you installed this tool.
 
+## Browser Automation Agent
+
+For users of Claude Code, this MCP server includes a specialized browser automation agent that provides optimized browser interaction capabilities while saving context window tokens.
+
+### Adding the Agent
+
+Copy the browser automation agent configuration to your user-level agents directory:
+
+```bash
+cp .claude/agents/browser-automation-agent.md ~/.claude/agents/
+```
+
+### Using the Agent
+
+Once added, the browser automation agent can be accessed through Claude Code's Task tool. The agent is specifically designed to:
+
+- **Save context window tokens** - By handling browser operations in a specialized context
+- **Provide expert browser automation** - With deep knowledge of web technologies and DOM manipulation
+- **Handle complex web interactions** - Including form submissions, data extraction, and automated testing
+
+Instead of calling individual puppeteer tools directly, you can use the Task tool with the `browser-automation-agent` subagent type for more efficient browser automation workflows.
+
 ## Usage
 
 ### Standard Mode
