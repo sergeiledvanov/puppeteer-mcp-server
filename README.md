@@ -43,14 +43,10 @@ This project is an experimental implementation inspired by [@modelcontextprotoco
 ### Option 1: Install from npm
 
 ```bash
-npm install -g puppeteer-mcp-server
+npm install -g .
 ```
 
 You can also run it directly without installation using npx:
-
-```bash
-npx puppeteer-mcp-server
-```
 
 ### Option 2: Install from source
 
@@ -77,57 +73,9 @@ npm run watch
 
 To use this tool with Claude, you need to add it to your MCP settings configuration file.
 
-### For Claude Desktop App
+### For Claude Desktop/Code
 
-Add the following to your Claude Desktop configuration file (located at `%APPDATA%\Claude\claude_desktop_config.json` on Windows or `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
-
-#### If installed globally via npm:
-
-```json
-{
-  "mcpServers": {
-    "puppeteer": {
-      "command": "puppeteer-mcp-server",
-      "args": [],
-      "env": {}
-    }
-  }
-}
-```
-
-#### Using npx (without installation):
-
-```json
-{
-  "mcpServers": {
-    "puppeteer": {
-      "command": "npx",
-      "args": ["-y", "puppeteer-mcp-server"],
-      "env": {}
-    }
-  }
-}
-```
-
-#### If installed from source:
-
-```json
-{
-  "mcpServers": {
-    "puppeteer": {
-      "command": "node",
-      "args": ["path/to/puppeteer-mcp-server/dist/index.js"],
-      "env": {
-        "NODE_OPTIONS": "--experimental-modules"
-      }
-    }
-  }
-}
-```
-
-### For Claude VSCode Extension
-
-Add the following to your Claude VSCode extension MCP settings file (located at `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json` on Windows or `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json` on macOS):
+Add the following to your Claude Desktop configuration file (located at `~/.claude.json`):
 
 #### If installed globally via npm:
 
@@ -137,20 +85,6 @@ Add the following to your Claude VSCode extension MCP settings file (located at 
     "puppeteer": {
       "command": "puppeteer-mcp-server",
       "args": [],
-      "env": {}
-    }
-  }
-}
-```
-
-#### Using npx (without installation):
-
-```json
-{
-  "mcpServers": {
-    "puppeteer": {
-      "command": "npx",
-      "args": ["-y", "puppeteer-mcp-server"],
       "env": {}
     }
   }
@@ -185,9 +119,7 @@ The server will launch a new browser instance by default.
 
 To connect to an existing Chrome window:
 
-1. Close any existing Chrome instances completely
-
-2. Launch Chrome with remote debugging enabled:
+1. Launch Chrome with remote debugging enabled:
    ```bash
    # Windows
    "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
@@ -199,17 +131,11 @@ To connect to an existing Chrome window:
    google-chrome --remote-debugging-port=9222
    ```
 
-3. Navigate to your desired webpage in Chrome
+2. Navigate to your desired webpage in Chrome
 
-4. Connect using the `puppeteer_connect_active_tab` tool:
-   ```json
-   {
-     "targetUrl": "https://example.com", // Optional: specific tab URL
-     "debugPort": 9222 // Optional: defaults to 9222
-   }
-   ```
+3. Ask Claude to connect to the active Chrome tab:
 
-The server will:
+4. The server will:
 - Detect and connect to the Chrome instance running with remote debugging enabled
 - Preserve your Chrome instance (won't close it)
 - Find and connect to non-extension tabs
