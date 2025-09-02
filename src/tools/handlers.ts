@@ -101,10 +101,6 @@ export async function handleToolCall(
       }
 
     case "puppeteer_screenshot": {
-      const width = args.width ?? 800;
-      const height = args.height ?? 600;
-      await page.setViewport({ width, height });
-
       const screenshot = await (args.selector ?
         (await page.$(args.selector))?.screenshot({ encoding: "base64" }) :
         page.screenshot({ encoding: "base64", fullPage: false }));
@@ -126,7 +122,7 @@ export async function handleToolCall(
         content: [
           {
             type: "text",
-            text: `Screenshot '${args.name}' taken at ${width}x${height}`,
+            text: `Screenshot '${args.name}' taken`,
           } as TextContent,
           {
             type: "image",

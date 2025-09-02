@@ -33,14 +33,12 @@ export const TOOLS: Tool[] = [
   },
   {
     name: "puppeteer_screenshot",
-    description: "Take a screenshot of the current page or a specific element",
+    description: "Take a screenshot of the current page or a specific element using the current browser viewport size",
     inputSchema: {
       type: "object",
       properties: {
         name: { type: "string", description: "Name for the screenshot" },
         selector: { type: "string", description: "CSS selector for element to screenshot" },
-        width: { type: "number", description: "Width in pixels (default: 800)" },
-        height: { type: "number", description: "Height in pixels (default: 600)" },
       },
       required: ["name"],
     },
