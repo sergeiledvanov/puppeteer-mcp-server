@@ -70,7 +70,7 @@ npm run build
 4. Run the server:
 
 ```bash
-npm start
+npm run watch
 ```
 
 ## MCP Server Configuration
@@ -228,12 +228,10 @@ Navigate to a URL.
 - Required: `url` - The URL to navigate to
 
 ### puppeteer_screenshot
-Take a screenshot of the current page or a specific element.
+Take a screenshot of the current page or a specific element using the current browser viewport size.
 - Required: `name` - Name for the screenshot
 - Optional:
   - `selector` - CSS selector for element to screenshot
-  - `width` - Width in pixels (default: 800)
-  - `height` - Height in pixels (default: 600)
 
 ### puppeteer_click
 Click an element on the page.
